@@ -1,0 +1,93 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package javaapplication1;
+import java.util.Random;
+import javaapplication1.matrixMultiply;
+import java.util.*;
+
+/**
+ *
+ * @author sahmad.bscs13seecs
+ */
+public class JavaApplication1 {
+        
+        public static void main(String[] args){
+        
+        matrixMultiply matrixMultiplier = new matrixMultiply();
+        
+        Random random = new Random();
+        //Taking dimensions as input
+        Scanner input = new Scanner(System.in);
+        System.out.println("Input Dimensions");
+        int dimensions = input.nextInt();
+        
+        //Initializing Matrices
+        int matrixFirst [][] = new int[dimensions][dimensions];
+        for(int i = 0;i<dimensions;i++){
+            for(int j = 0;j<dimensions;j++){
+                matrixFirst[i][j] = random.nextInt(101);
+            }      
+        }
+        
+        
+        //Initializing Matrices
+
+        int matrixSecond [][] = new int[dimensions][dimensions];
+        for(int i = 0;i<dimensions;i++){
+            for(int j = 0;j<dimensions;j++){
+                matrixSecond[i][j] = random.nextInt(101);
+
+            }      
+        }
+        //Evaluating Matrices
+              long startTime = System.currentTimeMillis();
+
+                int result[][] = matrixMultiplier.Multiply(matrixFirst, matrixSecond, dimensions);
+                long stopTime = System.currentTimeMillis();
+                long elapsedTime = stopTime - startTime;
+
+                long startTimeStrassen = System.currentTimeMillis();
+
+                int resultStrassen [][] = matrixMultiplier.StrassenMultiply(matrixFirst, matrixSecond);
+                long stopTimeStrassen = System.currentTimeMillis();
+                long elapsedTimeStrassen = stopTime - startTime;
+
+                
+                
+        System.out.println("Normal Multiplication");
+
+        for(int i = 0;i<dimensions;i++){
+            for(int j = 0;j<dimensions;j++){
+                System.out.print(result[i][j] + "  ");
+
+            }
+            System.out.println();
+            System.out.println();
+
+        }
+                
+        System.out.println("Strassen Multiplication");
+
+        for(int i = 0;i<dimensions;i++){
+            for(int j = 0;j<dimensions;j++){
+                System.out.print(resultStrassen[i][j] + "  ");
+
+            }
+            System.out.println();
+            System.out.println();
+
+        }
+
+        System.out.println("Normal Time = " + elapsedTime);
+        System.out.println("Strassen Time = " + elapsedTimeStrassen);
+
+
+        }
+        
+        
+        
+    
+}
